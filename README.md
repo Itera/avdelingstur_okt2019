@@ -15,10 +15,13 @@ Both windows and mac can use Docker Desktop:
 * [Docker Desktop for Windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows)
 * [Docker Desktop for Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac)
 
+#### Installation
+
 * Install the application and start it
 * On the command line - make sure that `docker version` gives information on server and client versions.
 * Under settings - select the Kubernetes section and enable Kubernetes.
 * On the command line - make sure that `kubectl version` gives information on server and client versions.
+* Under settings > advanced (win)/preferences > resources (mac) give docker at least 4Gb ram and 2 or 3 CPUs.
 
 ### Linux
 
@@ -44,14 +47,11 @@ $ kubectl proxy
 
 You should now be able to open the dashboard on http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
 
-If you open the page you will be asked to authenticate. For this we will 
-
-
-You will need to create a user.
+If you open the page you will be asked to authenticate. For this we will need to create a user.
 
 Run the following commands:
 
-// TODO - not sure what syntax for the secrets bit on windows
+// TODO - not sure what syntax for the secrets bit on windows - grep and awk etc.
 
 ```shell
 $ kubectl apply -f kubernetes-dashboard/dashboard-serviceaccount.yml
