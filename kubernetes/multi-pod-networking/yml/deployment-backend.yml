@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multi-deployment-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      application: multi-backend
+  template:
+    metadata:
+      labels:
+        application: multi-backend
+    spec:
+      containers:
+        - name: multi-backend
+          image: multibackend:local
+          ports:
+            - containerPort: 3000
+        - name: debug
+          image: debug:local

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multi-deployment-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      application: multi-frontend
+  template:
+    metadata:
+      labels:
+        application: multi-frontend
+    spec:
+      containers:
+        - name: multi-frontend
+          image: multifrontend:local
+          ports:
+            - containerPort: 80
+        - name: debug
+          image: debug:local

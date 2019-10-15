@@ -3,16 +3,15 @@ kind: Deployment
 metadata:
   name: hello-deployment
   labels:
-    app: nginx
+    application: hello
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: nginx
+      application: hello
   template:
     metadata:
       labels:
-        app: nginx
         application: hello
     spec:
       containers:

@@ -1,0 +1,12 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: multi-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /multi
+            backend:
+              serviceName: multi-service-frontend
+              servicePort: 8080

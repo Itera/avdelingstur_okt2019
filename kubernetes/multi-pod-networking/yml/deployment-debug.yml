@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multi-deployment-debug
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      application: multi-debug
+  template:
+    metadata:
+      labels:
+        application: multi-debug
+    spec:
+      containers:
+        - name: multi-debug
+          image: debug:local
