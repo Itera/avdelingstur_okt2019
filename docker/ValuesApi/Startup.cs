@@ -9,6 +9,8 @@ namespace ValuesApi
 {
     public class Startup
     {
+        private const string AllowAllPolicyName = "AllowAll";
+        
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -20,6 +22,14 @@ namespace ValuesApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(AllowAllPolicyName, builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                });
+            });
             
             var redisOptions = new ConfigurationOptions
             {
@@ -46,6 +56,7 @@ namespace ValuesApi
             }
 
             app.UseHttpsRedirection();
+            app.UseCors(AllowAllPolicyName);
             app.UseMvc();
         }
     }
