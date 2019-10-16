@@ -11,17 +11,29 @@ namespace ValuesApi.Controllers
     public class RedisController : ControllerBase
     {
         private readonly IDatabase _db;
+        private readonly IServer _server;
 
         public RedisController(IConnectionMultiplexer connectionMultiplexer)
         {
             _db = connectionMultiplexer.GetDatabase();
+            _server = connectionMultiplexer.GetServer(connectionMultiplexer.GetEndPoints()[0]);
         }
 
         // GET api/redis
         [HttpGet]
-        public Task<ActionResult<IEnumerable<string>>> Get()
+        public async Task<ActionResult<IEnumerable<string>>> Get()
         {
-            return Task.FromResult<ActionResult<IEnumerable<string>>>(new string[] { "value1", "value2" });
+            var values = new List<string>();
+
+            foreach(var key in _server.Keys(pattern: "")) {
+                var value = await _db.StringGetAsync(key);
+                if (value.HasValue)
+                {
+                    values.Add(value);
+                }
+            }
+
+            return values;
         }
 
         // GET api/redis/5
@@ -43,7 +55,6 @@ namespace ValuesApi.Controllers
         [HttpPut("{id}")]
         public async Task Put(string id, [FromBody] string value)
         {
-            Console.WriteLine(value);
             await _db.StringSetAsync(id, value);
         }
 
