@@ -3,9 +3,9 @@
 
 ### Simple java api with postgres in same docker network
 
+```
 docker network create simple-network
 
-```
 docker stop some-postgres
 docker rm some-postgres
 docker run --net=simple-network --name some-postgres -e POSTGRES_PASSWORD=postgres -d postgres
