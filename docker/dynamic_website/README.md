@@ -1,33 +1,33 @@
 # Fetching content from an API
 
-In this task you will serve a website using nginx that fetches content from an API.
+The goal of this task is to serve a website on localhost:8080 that fetches some content from an API from localhost:5000/api/values and renders the result.
 
-The website will be served in the same way we did for the static website.
 
-docker run --rm --name dynamic-website -p 8080:80 -v $(pwd):/usr/share/nginx/html:ro nginx
+## Website
+We will serve this website the same way as we did for the static website so you can reuse your solution from that task.
 
-docker build -t dynamic-website .
+## API
+We code for the API we will use is in the ValuesApi folder.
 
-docker run --name my-dynamic-website -p 8080:80 dynamic-website
+This API should be run in a separate container and exposed on port 5000.
 
-We will then then write our own dockerfile that copies the files into the image.
+In order to run the API we need to create a Dockerfile that
 
-docker build -t static-content .
+1) Build the API
+2) Run the API
 
-docker run --name some-static-content -p 8080:80 static-content
+See the README for the API code on how to do this.
 
-We will need to create a docker image for the API by writing a dockerfile that builds the API and serves it on a port 5000.
-
-The code for the API is in the ValuesApi folder.
-
-You can build the API using the command:
+Once you have created a Dockerfile for the API we can build an image using the `docker build` command:
 ```
-dotnet publish ValuesApi.csproj -c Release -o out
+docker build -t values-api .
 ```
 
-This will create a release build of the API and save the files in a folder called `out`.
+Then start a container using the `docker run` command:
+```
+docker run --rm -p 5000:80 values-api
+```
 
-In order to run the API we can run the command from the `out` folder:
-```
-dotnet ValuesApi.dll
-```
+You should now be able to view the website by opening http://localhost:8080 in a browser.
+
+Can you see the values we got from the API?
