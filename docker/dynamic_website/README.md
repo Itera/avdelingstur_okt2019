@@ -7,7 +7,7 @@ The goal of this task is to serve a website on localhost:8080 that fetches some 
 We will serve this website the same way as we did for the static website so you can reuse your solution from that task. Note that we have a new index.html file in this task so you need to build a new image that copies the correct file.
 
 ## API
-We code for the API we will use is in the [ValuesApi](../ValuesApi) folder.
+The code for the API we will use is in the [ValuesApi](../ValuesApi) folder.
 
 This API should be run in a separate container and exposed on port 5000.
 

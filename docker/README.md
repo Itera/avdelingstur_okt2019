@@ -4,14 +4,6 @@
 
 * Concepts 
 * Pull/run/ps/stop/rm etc 
-* Static Web 
-  * Map current dir 
-  * Running / ports (default and mapped) 
-  * Creating a custom container 
-* Service Web 
-  * Simple API (not exposed) 
-  * Simple react app (exposed) 
-  * Container link 
 * Exec / ssh / debug 
   * Logs 
   * File system (ssh in or exec bash) 
@@ -26,6 +18,10 @@
   * Ordering of lines (layering) 
   * Entrypoint 
 * Image vs container, Image repos, tags (sha and :latest etc)
+* Tasks
+  1) [Hosting a static website](static_website)
+  2) [Fetching content from an API](dynamic_website)
+  3) [API with redis integration](redis_api)
 
 ## Group 2 
 

@@ -13,7 +13,7 @@ docker run --rm --name my-static-website -p 8080:80 -v $(pwd):/usr/share/nginx/h
 
 You should then be able to view the website by opening http://localhost:8080 in a browser.
 
-Try changing the content of the index.html file and reload the webpage.
+Try changing the content of the index.html file and reload the webpage. Did the content change? Why/why not?
 
 ## Using custom image
 In this task we will copy the index.html file into the container instead of mounting our local file system.
