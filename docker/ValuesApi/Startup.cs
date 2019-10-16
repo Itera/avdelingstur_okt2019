@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using StackExchange.Redis;
 
 namespace ValuesApi
@@ -31,6 +32,11 @@ namespace ValuesApi
                 });
             });
             
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Values API", Version = "v1" });
+            });
+            
             var redisOptions = new ConfigurationOptions
             {
                 EndPoints = { Configuration.GetValue<string>("RedisEndpoint") },
@@ -57,6 +63,11 @@ namespace ValuesApi
 
             app.UseHttpsRedirection();
             app.UseCors(AllowAllPolicyName);
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Values API V1");
+            });
             app.UseMvc();
         }
     }
