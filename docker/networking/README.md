@@ -5,6 +5,7 @@
 
 docker network create simple-network
 
+```
 docker stop some-postgres
 docker rm some-postgres
 docker run --net=simple-network --name some-postgres -e POSTGRES_PASSWORD=postgres -d postgres
@@ -18,8 +19,10 @@ docker run --net=simple-network --name rest-api-docker -p 4567:4567 -e DB_HOST=s
 curl http://localhost:4567/hello
  
 curl http://localhost:4567/hello?name=Name&age=20
+```
 
-### Spinning up two kafka brokers with a single zookeeper
+### Spinning up two kafka brokers with a single zookeeper in host mode
+```
 docker run -d \
     --net=host \
     --name=zookeeper1 \
@@ -42,3 +45,4 @@ docker run -d \
     -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:29093 \
     -e KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 \
     confluentinc/cp-kafka:5.0.0
+```
