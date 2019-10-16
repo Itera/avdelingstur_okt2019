@@ -1,5 +1,5 @@
 # Networking
-## Using plain docker to connect multiple nodes on the same network
+## Using plain docker to connect multiple containers in the same docker network
 
 ### Simple java api with postgres in same docker network
 
