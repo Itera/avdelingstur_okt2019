@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: configmap-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      application: debug
+  template:
+    metadata:
+      labels:
+        application: debug
+    spec:
+      containers:
+        - name: configmap-debug
+          image: debug:local
+          env:
+            - name: DEMO_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: demo-config
+                  key: demo.key

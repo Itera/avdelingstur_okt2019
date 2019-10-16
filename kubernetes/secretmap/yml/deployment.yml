@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secret-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      application: debug
+  template:
+    metadata:
+      labels:
+        application: debug
+    spec:
+      containers:
+        - name: secret-debug
+          image: debug:local
+          volumeMounts:
+            - name: demo
+              mountPath: "/etc/demo"
+              readOnly: true
+      volumes:
+        - name: demo
+          secret:
+            secretName: demo-secret

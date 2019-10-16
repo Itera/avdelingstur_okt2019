@@ -1,15 +1,15 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: hello-ingress
-  namespace: hello-dev
+  name: static-ingress
+  namespace: static-dev
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
     - http:
         paths:
-          - path: /dev
+          - path: /static/dev
             backend:
-              serviceName: hello-service
+              serviceName: static-service
               servicePort: 80

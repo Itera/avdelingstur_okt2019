@@ -9,6 +9,7 @@
 * Configuration / Secrets (maps)
 * Networking
   * https://matthewpalmer.net/kubernetes-app-developer/articles/kubernetes-networking-guide-beginners.html
+* Volumes
 
 ## Exercises
 

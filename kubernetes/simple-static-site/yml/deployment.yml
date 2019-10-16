@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-deployment
+  name: static-deployment
   labels:
-    application: hello
+    application: static
 spec:
   replicas: 3
   selector:
     matchLabels:
-      application: hello
+      application: static
   template:
     metadata:
       labels:
-        application: hello
+        application: static
     spec:
       containers:
-        - name: hello
-          image: hellosite:local
+        - name: static
+          image: staticsite:local
           ports:
             - containerPort: 80

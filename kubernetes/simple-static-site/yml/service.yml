@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-service
+  name: static-service
   labels:
-    application: hello
+    application: static
 spec:
   selector:
-    application: hello
+    application: static
   ports:
     - protocol: TCP
       port: 80

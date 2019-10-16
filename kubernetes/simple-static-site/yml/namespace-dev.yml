@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: hello-dev
+  name: static-dev
   labels:
     environment: development
-    application: hello
+    application: static
