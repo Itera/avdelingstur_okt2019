@@ -54,6 +54,7 @@ Open it in a browser and you should be able to see our notebook.
 Try solving the first task by pasting the the following code into the cell:
 ```python
 import pandas as pd
+import random
 
 rows = 20
 columns = 10
