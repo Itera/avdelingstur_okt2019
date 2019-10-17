@@ -9,23 +9,23 @@ We will serve this website the same way as we did for the static website so you 
 ## API
 The code for the API we will use is in the [ValuesApi](../ValuesApi) folder.
 
-This API should be run in a separate container and exposed on port 5000.
+This API should be run in a separate container and port 80 in this container should be exposed on port 5000 on your system.
 
-In order to run the API we need to create a Dockerfile that
+- **Write a Dockerfile that that:**
 
-1) Build the API
-2) Run the API
+1) Builds the API
+2) Runs the API
 
-See the README for the API code on how to do this.
+See the [README](../ValuesApi/README.md) for the API code on how to do this.
 
-Once you have created a Dockerfile for the API we can build an image using the `docker build` command:
+- **Create an image from your Dockerfile using the `docker build` command:**
 ```
-docker build -t values-api .
+docker build --tag values-api .
 ```
 
-Then start a container using the `docker run` command:
+- **Start a container from the image using the `docker run` command:**
 ```
-docker run --rm -p 5000:80 values-api
+docker run --rm --port 5000:80 values-api
 ```
 
 You should now be able to view the website by opening http://localhost:8080 in a browser.

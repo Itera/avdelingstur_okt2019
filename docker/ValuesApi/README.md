@@ -2,9 +2,9 @@
 Simple API used to fetch static values. You can also store and get values from a redis cache.
 
 ## Requirements
-In order to build and run this API you need to install .NET Core 2.2: https://dotnet.microsoft.com/download/dotnet-core/2.2
+In order to build and run this API you need to install [.NET Core 2.2](https://dotnet.microsoft.com/download/dotnet-core/2.2)
 
-Alternatively you can build it with docker using the .NET Core images: https://hub.docker.com/_/microsoft-dotnet-core
+Alternatively you can build it with docker using the [.NET Core images](https://hub.docker.com/_/microsoft-dotnet-core)
 
 ## How to build
 This command will build the API and store the result in the `out` folder:
