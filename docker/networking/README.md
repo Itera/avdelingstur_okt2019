@@ -21,6 +21,18 @@ curl http://localhost:4567/hello
 curl http://localhost:4567/hello?name=Name&age=20
 ```
 
+### Spin up postgres with postgres data mapped to folder postgres-data in current directory
+
+only works in bash shells that supports ``` `pwd` ``` syntax. 
+TODO: Edit the example below to get it working in different environments?
+
+```
+mkdir postgres-data
+docker stop some-postgres
+docker rm some-postgres
+docker run --net=simple-network --name some-postgres -e POSTGRES_PASSWORD=postgres -v `pwd`/postgres-data:/var/lib/postgresql/data -d postgres
+```
+
 ### Spinning up two kafka brokers with a single zookeeper in host mode
 ```
 docker run -d \
