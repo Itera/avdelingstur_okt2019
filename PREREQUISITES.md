@@ -43,8 +43,16 @@ If you open the page you will be asked to authenticate. For this we will need to
 
 Run the following commands:
 
-// TODO - not sure what syntax for the secrets bit on windows - grep and awk etc.
+#### Windows
+```shell
+$TOKEN=((kubectl -n kube-system describe secret default | Select-String "token:") -split " +")[1]
 
+kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
+
+${TOKEN}
+```
+
+#### Mac
 ```shell
 $ kubectl apply -f kubernetes-dashboard/dashboard-serviceaccount.yml
 
