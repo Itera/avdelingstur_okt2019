@@ -36,6 +36,7 @@
   1) [Hosting a static website](static_website)
   2) [Fetching content from an API](dynamic_website)
   3) [API with redis integration](redis_api)
+  4) BONUS: [Data Science with Jupyter notebook](jupyter_notebook)
 
 ## Group 2
 
