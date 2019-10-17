@@ -17,7 +17,7 @@ Both windows and mac can use Docker Desktop:
 
 ### Linux
 
-// TODO - install docker and minikube
+This will depend on your distro - but you need an up to date docker and some form for kubernetes (either minikube or perhaps the snap install of microk8s.io)
 
 ### Kubernetes Dashboard
 
@@ -65,6 +65,8 @@ This should give you a token you can use to access the dashboard.
 
 ### Linux
 
-// TODO Minikube - `minikube dashboard` ??
+This will depened on which distro you are on and which kubernetes you selected.
 
-// https://microk8s.io/ ?
+## Other useful things
+
+It's likely worth installing k9s - https://k9ss.io/
