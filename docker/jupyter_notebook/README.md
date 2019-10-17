@@ -38,7 +38,7 @@ We also need to access the kernel on port `8888`.
 We can achieve both these goals by running the command:
 
 ```
-docker run --publish 8888:8888 -v ${pwd}/notebooks:/notebooks -it jupyter-notebook
+docker run --publish 8888:8888 -v $(pwd)/notebooks:/notebooks -it jupyter-notebook
 ```
 
 ## Do some data science!
