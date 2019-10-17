@@ -12,7 +12,7 @@ We will first solve this by running the base nginx image and mounting the curren
 - **Run the following command:**
 
 ```
-docker run --rm --name my-static-website --port 8080:80 --volume $(pwd):/usr/share/nginx/html:ro nginx
+docker run --rm --name my-static-website --publish 8080:80 --volume $(pwd):/usr/share/nginx/html:ro nginx
 ```
 
 You should then be able to view the website by opening http://localhost:8080 in a browser.
@@ -36,7 +36,7 @@ docker build --tag static-website .
 
 - **Start a container from the image using the `docker run` command:**
 ```
-docker run --rm --port 8080:80 static-website
+docker run --rm --publish 8080:80 static-website
 ```
 
 You should then be able to view the website by opening http://localhost:8080 in a browser.

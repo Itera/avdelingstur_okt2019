@@ -25,7 +25,7 @@ docker build --tag values-api .
 
 - **Start a container from the image using the `docker run` command:**
 ```
-docker run --rm --port 5000:80 values-api
+docker run --rm --publish 5000:80 values-api
 ```
 
 You should now be able to view the website by opening http://localhost:8080 in a browser.
