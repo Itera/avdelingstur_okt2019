@@ -20,10 +20,10 @@ public class Main {
             if (jdbi == null) {
                 jdbi = new JdbiFactory().getNewInstance();
             }
-            createTable(jdbi);
+            Handle handle = jdbi.open();
+            tryToCreateTable(handle);
             var name = getName(req);
             var age = getAge(req);
-            Handle handle = jdbi.open();
             insertData(name, age, handle);
             var dataList = getDataList(handle);
             handle.close();
@@ -39,8 +39,8 @@ public class Main {
                 .list();
     }
 
-    private static int insertData(String name, Integer age, Handle handle) {
-        return handle.createUpdate(
+    private static void insertData(String name, Integer age, Handle handle) {
+        handle.createUpdate(
                 "insert into mydata(name, age) values('" + name + "', " + age + ")"
         ).execute();
     }
@@ -56,11 +56,9 @@ public class Main {
                 .getOrElse(100);
     }
 
-    private static void createTable(Jdbi jdbi) {
-        Handle handle = jdbi.open();
+    private static void tryToCreateTable(Handle handle) {
         Try.of(() -> handle.createUpdate(
                 "create table mydata( id serial primary key, name varchar not null, age int not null)"
         ).execute());
-        handle.close();
     }
 }
