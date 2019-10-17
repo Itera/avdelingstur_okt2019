@@ -24,6 +24,7 @@ curl http://localhost:4567/hello?name=Name&age=20
 ### Spin up postgres with postgres data mapped to folder postgres-data in current directory
 
 only works in bash shells that supports ``` `pwd` ``` syntax. 
+
 TODO: Edit the example below to get it working in different environments?
 
 ```
@@ -33,7 +34,46 @@ docker rm some-postgres
 docker run --net=simple-network --name some-postgres -e POSTGRES_PASSWORD=postgres -v `pwd`/postgres-data:/var/lib/postgresql/data -d postgres
 ```
 
+Check that the database has started correctly by inspecting its logs with `docker logs some-postgres`
+
+Then check that the postgres-data folder is now populated with the data files from postgres by running `ls postgres-data` or `dir postgres-data`
+
+Its not difficult to backup this folder as a whole, but I think the main getaway from this is that the location you mount the database files to can reside on a completely different disk. It can even reside on a different server via network mounts.
+
+### Use docker volumes for database persistence
+
+```
+docker volume create pgdata
+docker stop some-postgres
+docker rm some-postgres
+docker run --net=simple-network --name some-postgres -e POSTGRES_PASSWORD=postgres -v pgdata:/var/lib/postgresql/data -d postgres
+```
+
+Then inspect the volume to find where it stores its data:
+
+```
+docker volume inspect pgdata
+[
+    {
+        "CreatedAt": "2019-10-17T19:39:56Z",
+        "Driver": "local",
+        "Labels": {},
+        "Mountpoint": "/var/lib/docker/volumes/pgdata/_data",
+        "Name": "pgdata",
+        "Options": {},
+        "Scope": "local"
+    }
+]
+```
+
+On macOS with Docker for Desktop, this folder is not directly accessible, because docker is running in a vm. You can get around this by inspecting the volume in Kinematic.
+
+On linux the above output will point you directly to where the files are.
+
 ### Spinning up two kafka brokers with a single zookeeper in host mode
+
+Just an example of real world usage of host network mode for spinning up a kafka cluster.
+
 ```
 docker run -d \
     --net=host \
