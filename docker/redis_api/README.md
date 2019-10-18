@@ -24,9 +24,23 @@ We can now access our redis cache on `localhost:6379`, but our API can't reach i
 Let's try to access it using a docker network or link instead.
 
 ## Using link
-Try accessing it through a docker link using the `--link` flag when running the values-api container.
+Try accessing it through a [docker link](https://docs.docker.com/network/links/) using the `--link` flag when running the values-api container.
 
-This will require you to update the config by updating the `RedisEndpoint` environment variable in the `appsettings.json` of the [ValuesApi](../ValuesApi) folder.
+The flag can be used like this:
+```
+--link <name or id>:alias
+```
+
+Where `name` is the name of the container we’re linking to and  `alias` is an alias for the link name. We can connect to the linked container by using the alias as host name.
+
+In order to connect to the alias instead of `http://localhost:6379` we need to update the `RedisEndpoint` configuration in our API.
+
+One way to do this is by updating the value in [appsettings.json](../ValuesApi/appsettings.json), but this would require us to build a new container each time we update the alias name.
+
+Our API is configured to look for config values from environment variables as well, so we can override the endpoint by setting the `RedisEndpoint` environment variable when we run the container like this:
+```
+docker run -e "<environment_variable>=<value> ..."
+```
 
 - **Run the following command:**
 
@@ -35,6 +49,11 @@ docker run --rm --link values-redis:redis-endpoint --publish 5000:80 -it -e "Red
 ```
 
 ## Using network
+
+Container links are a legacy feature that might be removed, so Docker suggest we should use a [network](https://docs.docker.com/network/) instead.
+
+We will create a `bridge` network that our containers can use to communicate.
+
 - **Create a network for this application using the `docker network` command:**
 
 ```
