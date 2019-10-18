@@ -6,6 +6,15 @@ The goal of this task is to serve a website on `localhost:8080` that fetches som
 ## Website
 We will serve this website the same way as we did for the static website, so you can reuse your Dockerfile from that task. **Note that we have a new index.html file in this task so you need to build a new image that copies the correct file.**
 
+### Build new image
+```
+docker build -t dynamic-website .
+```
+
+### Run container
+```
+docker run --rm -p 8080:80 dynamic-website
+```
 
 ## API
 The code for the API we will use is in the [ValuesApi](../ValuesApi) folder.
