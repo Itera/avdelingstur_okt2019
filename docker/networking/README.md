@@ -87,7 +87,7 @@ docker volume create pgdata
 docker stop some-postgres
 docker rm some-postgres
 docker run --net=simple-network \
-           -name some-postgres \
+           --name some-postgres \
            -e POSTGRES_PASSWORD=postgres \
            -v pgdata:/var/lib/postgresql/data \
            -d postgres
