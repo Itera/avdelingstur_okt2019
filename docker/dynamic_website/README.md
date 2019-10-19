@@ -1,20 +1,29 @@
 # Fetching content from an API
 
-The goal of this task is to serve a website on localhost:8080 that fetches some content from an API from localhost:5000/api/values and renders the result.
+The goal of this task is to serve a website on `localhost:8080` that fetches some content from an API at `localhost:5000/api/values` and renders the result.
 
 
 ## Website
-We will serve this website the same way as we did for the static website so you can reuse your solution from that task. Note that we have a new index.html file in this task so you need to build a new image that copies the correct file.
+We will serve this website the same way as we did for the static website, so you can reuse your Dockerfile from that task. **Note that we have a new index.html file in this task so you need to build a new image that copies the correct file.**
+
+### Build new image
+```
+docker build -t dynamic-website .
+```
+
+### Run container
+```
+docker run --rm -p 8080:80 dynamic-website
+```
 
 ## API
 The code for the API we will use is in the [ValuesApi](../ValuesApi) folder.
 
 This API should be run in a separate container and port 80 in this container should be exposed on port 5000 on your system.
 
-- **Write a Dockerfile that that:**
-
-1) Builds the API
-2) Runs the API
+- **Write a Dockerfile that:**
+1. Builds the API
+2. Runs the API
 
 See the [README](../ValuesApi/README.md) for the API code on how to do this.
 
