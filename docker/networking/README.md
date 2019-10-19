@@ -16,7 +16,10 @@ docker network create simple-network
 
 docker stop some-postgres
 docker rm some-postgres
-docker run --net=simple-network --name some-postgres -e POSTGRES_PASSWORD=postgres -d postgres
+docker run --net=simple-network \
+           --name some-postgres \
+           -e POSTGRES_PASSWORD=postgres \
+           -d postgres
 ```
 
 Then build the docker image for the rest-api. This will build the Dockerfile residing in rest-api sub folder.
@@ -30,7 +33,11 @@ Finally start the rest api server with the network we created above and an envir
 ```
 docker stop rest-api-docker
 docker rm rest-api-docker
-docker run --net=simple-network --name rest-api-docker -p 4567:4567 -e DB_HOST=some-postgres -d rest-api-docker
+docker run --net=simple-network \
+           --name rest-api-docker \
+           -p 4567:4567 \
+           -e DB_HOST=some-postgres \
+           -d rest-api-docker
 ```
 
 You can now either inspect http://localhost:4567/hello in a browser or use curl:
@@ -51,8 +58,14 @@ TODO: Edit the example below to get it working in different environments?
 mkdir postgres-data
 docker stop some-postgres
 docker rm some-postgres
-docker run --net=simple-network --name some-postgres -e POSTGRES_PASSWORD=postgres -v `pwd`/postgres-data:/var/lib/postgresql/data -d postgres
+docker run --net=simple-network \
+            --name some-postgres \
+            -e POSTGRES_PASSWORD=postgres \
+            -v `pwd`/postgres-data:/var/lib/postgresql/data \
+            -d postgres
 ```
+
+you can use git bash for ex to get the above example working.
 
 Check that the database has started correctly by inspecting its logs with `docker logs some-postgres`
 
@@ -66,7 +79,11 @@ Its not difficult to backup this folder as a whole, but I think the main getaway
 docker volume create pgdata
 docker stop some-postgres
 docker rm some-postgres
-docker run --net=simple-network --name some-postgres -e POSTGRES_PASSWORD=postgres -v pgdata:/var/lib/postgresql/data -d postgres
+docker run --net=simple-network \
+           -name some-postgres \
+           -e POSTGRES_PASSWORD=postgres \
+           -v pgdata:/var/lib/postgresql/data \
+           -d postgres
 ```
 
 Then inspect the volume to find where it stores its data:
