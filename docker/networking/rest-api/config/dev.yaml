@@ -1,0 +1,163 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: rest-api-dev
+  labels:
+    environment: development
+    application: rest-api
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  labels:
+    app: postgres
+data:
+  POSTGRES_DB: postgresdb
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: postgres-pv-volume
+  labels:
+    type: local
+    app: postgres
+spec:
+  storageClassName: hostpath
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/mnt/data"
+
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: postgres-pv-claim
+  labels:
+    app: postgres
+spec:
+  storageClassName: hostpath
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:10.4
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: postgres-config
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgredb
+      volumes:
+        - name: postgredb
+          persistentVolumeClaim:
+            claimName: postgres-pv-claim
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  labels:
+    app: postgres
+spec:
+  type: NodePort
+  ports:
+    - port: 5432
+  selector:
+    app: postgres
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rest-api-config
+  labels:
+    app: postgres
+data:
+  POSTGRES_HOST: postgres
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rest-api-deployment
+  labels:
+    application: rest-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      application: rest-api
+  template:
+    metadata:
+      labels:
+        application: rest-api
+    spec:
+      containers:
+        - name: rest-api
+          image: rest-api-docker:local
+          ports:
+            - containerPort: 4567
+          envFrom:
+            - configMapRef:
+                name: postgres-config
+            - configMapRef:
+                name: rest-api-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rest-api-service
+  labels:
+    application: rest-api
+spec:
+  selector:
+    application: rest-api
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 4567
+
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: rest-api-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            backend:
+              serviceName: rest-api-service
+              servicePort: 80
+

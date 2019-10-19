@@ -13,12 +13,15 @@ public class JdbiFactory {
 
     public Jdbi getNewInstance() {
         return Jdbi.create(
-                "jdbc:postgresql://" + getDBHostname() + ":" + getDBPort() + "/postgres",
+                "jdbc:postgresql://" + getDBHostname() + ":" + getDBPort() + "/" + getDBName(),
                 getDBUser(),
                 getDBPassword()
         );
     }
 
+    private String getDBName() {
+        return config.getString("db.name");
+    }
     private String getDBHostname() {
         return config.getString("db.hostname");
     }

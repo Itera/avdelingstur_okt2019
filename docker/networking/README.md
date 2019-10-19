@@ -114,6 +114,18 @@ On macOS with Docker for Desktop, this folder is not directly accessible, becaus
 
 On linux the above output will point you directly to where the files are.
 
+## Build and deploy to Kubernetes
+
+In shell
+
+```
+cd rest-api
+./build.sh
+./deployToDev.sh
+```
+
+If you run build.sh you must delete the replica set for rest-api. It will then be automatically recreated with the new image.
+
 ### Spinning up two kafka brokers with a single zookeeper in host mode
 
 Just an example of real world usage of host network mode for spinning up a kafka cluster.
