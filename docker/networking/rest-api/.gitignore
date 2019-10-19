@@ -1,3 +1,4 @@
 .idea
-target
+target/*
+!target/rest-api-1.0-SNAPSHOT.jar
 *.iml
