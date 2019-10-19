@@ -135,3 +135,6 @@ docker run -d \
     -e KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 \
     confluentinc/cp-kafka:5.0.0
 ```
+
+### Cleanup
+docker system prune
