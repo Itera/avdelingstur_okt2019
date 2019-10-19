@@ -65,6 +65,13 @@ docker run --net=simple-network \
             -d postgres
 ```
 
+
+get into docker postgres container:
+
+```
+docker exec -it some-postgres bash
+```
+
 you can use git bash for ex to get the above example working.
 
 Check that the database has started correctly by inspecting its logs with `docker logs some-postgres`
