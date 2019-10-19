@@ -1,0 +1,14 @@
+C:\GIT\Itera\DockerExample\DockerExample\obj\Debug\netcoreapp2.2\DockerExample.csproj.CoreCompileInputs.cache
+C:\GIT\Itera\DockerExample\DockerExample\obj\Debug\netcoreapp2.2\DockerExample.AssemblyInfoInputs.cache
+C:\GIT\Itera\DockerExample\DockerExample\obj\Debug\netcoreapp2.2\DockerExample.AssemblyInfo.cs
+C:\GIT\Itera\DockerExample\DockerExample\bin\Debug\netcoreapp2.2\DockerExample.deps.json
+C:\GIT\Itera\DockerExample\DockerExample\bin\Debug\netcoreapp2.2\DockerExample.runtimeconfig.json
+C:\GIT\Itera\DockerExample\DockerExample\bin\Debug\netcoreapp2.2\DockerExample.runtimeconfig.dev.json
+C:\GIT\Itera\DockerExample\DockerExample\bin\Debug\netcoreapp2.2\DockerExample.dll
+C:\GIT\Itera\DockerExample\DockerExample\bin\Debug\netcoreapp2.2\DockerExample.pdb
+C:\GIT\Itera\DockerExample\DockerExample\obj\Debug\netcoreapp2.2\DockerExample.csprojAssemblyReference.cache
+C:\GIT\Itera\DockerExample\DockerExample\obj\Debug\netcoreapp2.2\DockerExample.RazorAssemblyInfo.cache
+C:\GIT\Itera\DockerExample\DockerExample\obj\Debug\netcoreapp2.2\DockerExample.RazorAssemblyInfo.cs
+C:\GIT\Itera\DockerExample\DockerExample\obj\Debug\netcoreapp2.2\DockerExample.RazorTargetAssemblyInfo.cache
+C:\GIT\Itera\DockerExample\DockerExample\obj\Debug\netcoreapp2.2\DockerExample.dll
+C:\GIT\Itera\DockerExample\DockerExample\obj\Debug\netcoreapp2.2\DockerExample.pdb
