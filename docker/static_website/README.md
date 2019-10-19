@@ -15,6 +15,8 @@ We will first solve this by running the base nginx image and mounting the curren
 docker run --rm --name my-static-website --publish 8080:80 --volume $(pwd):/usr/share/nginx/html:ro nginx
 ```
 
+NOTE: If you are using Windows you can run it in Powershell by replacing `$(pwd)` with `${pwd}`.
+
 You should then be able to view the website by opening http://localhost:8080 in a browser.
 
 - **Try changing the content of the index.html file and reload the webpage**
