@@ -26,4 +26,6 @@ Cluster admins can add `--admin` at the end of this command
 
 ## Change kubectl current context to MAD platform 
 
-    kubectl config use-context ite-tech-mad-aks-admin
+    kubectl config use-context ite-tech-mad-aks
+
+Cluster admins (--admin above) will have context name `ite-tech-mad-aks-admin`
