@@ -12,7 +12,9 @@ You will need the azure command line tools installed.
 
 ## Add credentials as a kubectl context
 
-    az aks get-credentials -g ite-tech-aks-rg -n ite-tech-mad-aks --admin
+    az aks get-credentials -g ite-tech-aks-rg -n ite-tech-mad-aks
+    
+Cluster admins can add `--admin` at the end of this command
 
 ## Browse dashboard
 
